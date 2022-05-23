@@ -1,8 +1,11 @@
 const express = require("express");
 const { use } = require("express/lib/application");
 const TaskModel = require("../src/models/task.model.js");
+const cors = require("cors");
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 
 // Métdos HTTP
@@ -49,7 +52,7 @@ app.put("/tasks/:id", async (req, res) => {
 
 app.delete("/tasks/:id", async (req, res) => {
   try {
-    const task = await TaskModel.findByIdAndRemove(req.params.id);
+    const tasks = await TaskModel.findByIdAndRemove(req.params.id);
     res.status(200).json(tasks);
   } catch (error) {
     res.status(500).send(error.message);
