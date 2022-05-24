@@ -62,5 +62,5 @@ app.delete("/tasks/:id", async (req, res) => {
 //////////////////
 
 // Subir Servidor
-const port = 8080;
+const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Servidor rodando na porta ${port}`));
